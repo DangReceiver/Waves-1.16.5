@@ -1,0 +1,26 @@
+name: Waves
+version: '${project.version}'
+main: de.tdf.waves.waves.Waves
+api-version: 1.16
+loadbefore: [ Helpy ]
+depend: [ Helpy ]
+authors: [ TearsDontFall ]
+description: A single and multiplayer. Classic styled gameplay with a fresh touch.
+
+commands:
+  Info:
+    description: Hey. Get some basic information yk.
+  Tutorial:
+    description: Start (over) the tutorial.
+  UpdateVisuals:
+    description: Update your visual texts.
+  Xp:
+    description: Manage your xp point-amount.
+  KillSpawner:
+    description: Remove item spawners.
+  CreateSpawner:
+    description: Create a spawner.
+  EntityAmount:
+    description: Count nearby entities and mobs.
+  GenWave:
+    description: DEBUG - generate a random Wave.
