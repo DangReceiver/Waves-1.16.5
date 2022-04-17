@@ -87,7 +87,10 @@ public class Sb {
 	public static String pointsToVisual(Player p, Xp xp) {
 		long max = xp.getMaxXpPoints(),
 				points = xp.getXpPoints();
-		if (max <= 0 && points <= 0 && xp.getXpLevel() <= 0) xp.levelUp();
+		if (max <= 0 && points <= 0 && xp.getXpLevel() <= 0) {
+			xp.levelUp();
+			max = xp.getMaxXpPoints();
+		}
 		double per = (Math.round(10 * points / max));
 		int ten = 10;
 		StringBuilder dp = new StringBuilder("§a");

@@ -1,8 +1,7 @@
 package de.tdf.waves.waves;
 
-import de.tdf.helpy.helpy.Helpy;
-import de.tdf.helpy.methods.generator.world.UseVoid;
 import de.tdf.helpy.methods.items.IB;
+import de.tdf.helpy.methods.worldGenerator.UseVoid;
 import de.tdf.waves.comamnds.*;
 import de.tdf.waves.listeners.CM;
 import de.tdf.waves.listeners.player.all.*;
@@ -55,7 +54,6 @@ public final class Waves extends JavaPlugin {
 		for (Player p : Bukkit.getOnlinePlayers())
 			Sb.setDefaultScoreBoard(p);
 
-		Helpy.defWorld = spawn;
 		PluginManager pm = Bukkit.getPluginManager();
 		pm.registerEvents(new CM(), this);
 		pm.registerEvents(new Death(), this);
@@ -182,7 +180,7 @@ public final class Waves extends JavaPlugin {
 				System.out.println(En.SOUT_INFO + String.format("The world \"%s\" will now be created.%n", s));
 			}
 		Waves.getWaves().saveConfig();
-		if (!c.isSet("Teleports")) {
+		if (!c.isSet("Teleports") && spawn != null && (!c.isSet("Teleports.Spawn") || !c.isSet("Teleports.City"))) {
 			spLoc = new Location(spawn, 0.5D, 100.1D, 0.5D);
 			System.out.println(" " + spawn.getName() + " | " + spLoc.getWorld().getName());
 			city = new Location(Bukkit.getWorld("City"), 0.5D, 80.1D, 0.5D);

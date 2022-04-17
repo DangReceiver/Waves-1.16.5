@@ -65,7 +65,7 @@ public class SpecialInteract implements Listener {
 				e.setCancelled(true);
 				Player p = e.getPlayer();
 				Inventory c = Bukkit.createInventory(null, 5 * 9, i.getItemMeta().getDisplayName());
-				IB.invFiller(c, Waves.filler, 5);
+				IB.invFiller(c, Waves.filler);
 				if (i.equals(CM.identifier))
 					p.openInventory(c);
 			}
@@ -75,7 +75,7 @@ public class SpecialInteract implements Listener {
 	public void specialInteract(Player p, ItemStack i, String dn) {
 		if (i != null && i.hasItemMeta() && i.getItemMeta().hasEnchant(Enchantment.DURABILITY)) {
 			Inventory c = Bukkit.createInventory(null, 5 * 9, dn);
-			IB.invFiller(c, Waves.filler, 5);
+			IB.invFiller(c, Waves.filler);
 			if (i.equals(CM.navi)) {
 				c.setItem(c.getSize() / 2, IB.lore(IB.name(new ItemStack(Material.REDSTONE_LAMP),
 						En.ITEM_NAME_INV_NAVI_SPAWN), En.ITEM_LORE_INV_NAVI_SPAWN));

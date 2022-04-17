@@ -114,13 +114,15 @@ public class Xp {
 				else pc.set("Xp.maxPoints", (XpLevel * lev * (m + mulAdd / 100)) * pc.getDouble("Xp.customMultiplier"));
 				pc.savePCon();
 
-				p.sendTitle(En.LEVEL_UP, "§2§kk §a§l§oCongrats§8! §7You are §alevel §2" + XpLevel + " §7now §2§kk", 5, 60, 0);
-				Bukkit.getScheduler().runTaskLaterAsynchronously(Waves.getWaves(), () -> {
-					p.sendTitle(En.LEVEL_UP, "§e§kk §7You will need §e§o" + getMaxXpPoints() + " §ePoints §7to level up now§8. §e§kk ", 0, 50, 15);
-				}, 68);
-				p.playSound(p.getLocation(), Sound.ITEM_TOTEM_USE, 0.2f, 1.2f);
-				p.playSound(p.getLocation(), Sound.BLOCK_RESPAWN_ANCHOR_DEPLETE, 0.66f, 1.15f);
-				Sb.updateLevel(p);
+				if (XpLevel >= 2) {
+					p.sendTitle(En.LEVEL_UP, "§2§kk §a§l§oCongrats§8! §7You are §alevel §2" + XpLevel + " §7now §2§kk", 5, 60, 0);
+					Bukkit.getScheduler().runTaskLaterAsynchronously(Waves.getWaves(), () -> {
+						p.sendTitle(En.LEVEL_UP, "§e§kk §7You will need §e§o" + getMaxXpPoints() + " §ePoints §7to level up now§8. §e§kk ", 0, 50, 15);
+					}, 68);
+					p.playSound(p.getLocation(), Sound.ITEM_TOTEM_USE, 0.2f, 1.2f);
+					p.playSound(p.getLocation(), Sound.BLOCK_RESPAWN_ANCHOR_DEPLETE, 0.66f, 1.15f);
+					Sb.updateLevel(p);
+				}
 				Bukkit.getScheduler().runTaskLaterAsynchronously(Waves.getWaves(), () -> {
 					p.playSound(p.getLocation(), Sound.BLOCK_NOTE_BLOCK_BIT, 0.25f, 1.1f);
 					pc.setTokens(pc.getTokens() + XpLevel * 50);
@@ -138,8 +140,8 @@ public class Xp {
 
 	public long getMaxXpPoints() {
 		if (pc != null)
-			return pc.getLong("Xp.maxPoints");
-		return -1;
+			return pc.isSet("Xp.maxPoints") ? pc.getLong("Xp.maxPoints") : -1;
+		return -2;
 	}
 
 	public int getXpLevel() {
